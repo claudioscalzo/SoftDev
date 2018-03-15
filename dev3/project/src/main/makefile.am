@@ -1,0 +1,9 @@
+# Binaries generation (and installation)
+mybindir=../../uselessbin/
+mybin_PROGRAMS=mistery_foo
+
+# Sources and headers
+mistery_foo_SOURCES=main.c main.h
+
+# Libraries
+mistery_foo_LDADD=../lib_foo/foo.a

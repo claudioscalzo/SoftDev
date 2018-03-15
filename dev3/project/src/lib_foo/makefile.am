@@ -1,0 +1,5 @@
+# Binaries generation (without installation)
+noinst_LIBRARIES=foo.a
+
+# Sources and headers
+foo_a_SOURCES=foo.c foo.h

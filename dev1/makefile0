@@ -1,0 +1,10 @@
+MONTH=$(shell date +%B | awk 'BEGIN{FS=" "} {print $3}')
+MONTHC=$(MONTH).c
+MONTHO=$(MONTH).o
+
+all: object exe
+
+object: $(MONTHC)
+	gcc -c $(MONTHC) -o $(MONTHO)
+exe: strange_app.c strange_app.h $(MONTHO)
+	gcc strange_app.c $(MONTHO) -o strange_app
