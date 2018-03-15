@@ -1,0 +1,10 @@
+for d in $(find . -type d -not -name "."); do
+    if [ -d "$d" ]; then
+        if [ $(find $d -type f -atime +30 | wc -l) -eq 0 ]; then
+            dire=$(dirname $d)
+            name=$(basename $d)
+            tar -zcf $d.tgz -C $dire $name
+            rm -Rf $d
+        fi
+    fi
+done

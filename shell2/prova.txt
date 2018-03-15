@@ -1,0 +1,50 @@
+$ !! 2&gt;&amp;1 | `tail -1` (*NOTE: To be used ONLY after a command fails with Ubuntu package suggestion*)\n
+alias ..='cd ..'\n
+function whichpkg() { readlink -f &quot;$(which $1)&quot; | xargs --no-run-if-empty dpkg -S; }\n
+alias install='sudo apt-get install'\n
+shopt -s histverify\n
+while true; do nc -l 7000 | tar -xvf -; done\n
+find . ! -name \*.md5 -exec 'md5sum &quot;{}&quot; &gt; &quot;{}&quot;.md5' \;\n
+ruby -e 'puts `rpmdep glibc`.split(&quot;,&quot;)[2..-1]'\n
+sed -n '1~5{N;N;p}' file.txt\n
+sed G file.txt\n
+lsof -Pnl +M -i4\n
+tpb() { wget -U Mozilla -qO - $(echo &quot;http://thepiratebay.org/search/$@/0/7/0&quot; | sed 's/ /\%20/g') | grep -o 'http\:\/\/torrents\.thepiratebay\.org\/.*\.torrent' | tac; }\n
+yum remove `rpm -qa --qf &quot;%{n}.%{arch}\n
+awk '{$1=$3="";}1' file\n
+find . -type f -print0 | xargs -0 rename 's/\ //g'\n
+geoip() { wget -qO - http://freegeoip.net/xml/$1 | sed '3,12!d;s/&lt;//g;s/&gt;/: /g;s/\/.*//g' ; }\n
+read -d &quot;&quot;\n
+export PS1=&quot;[\u@`hostname -I` \W]$ &quot;\n
+find . ! -name &quot;$(printf '*[-]*')&quot;\n
+out() { tmp=$(mktemp); awk '{print $0}' &gt; $tmp; if [ $(wc -l $tmp | awk '{print $1}') -gt $(tput lines) ]; then less $tmp; else cat $tmp; fi; rm -fr $tmp; }\n
+find . -maxdepth 1 -type f -exec chmod +a &quot;everyone deny delete&quot; {} \;\n
+calc() { echo &quot;scale=4; ${*//,/.}&quot; | bc -l; }\n
+python -ic &quot;from __future__ import division; from math import *; from random import *&quot;\n
+mplayer -rtsp-stream-over-tcp -user-agent QuickTime/7.6.4 http://trailers.apple.com/movies/HDmovie-h720p.mov\n
+curl sputnick-area.net/ua\n
+0
+-7
+2
+0
+7
+6
+4
+0
+1
+1
+1
+1
+0
+15
+1
+-1
+1
+0
+4
+-1
+-1
+-1
+1
+5
+-3

@@ -1,0 +1,46 @@
+files=$(find . -type "f" -atime "+30")
+
+# Set of directories to NOT compress
+for f in $files; do
+    path=$(dirname $f)
+    name=$(basename $f)
+    IFS=" "
+    dont=$( echo -e "$dont\n$( echo $path | tr -d '.' | sed -nr 's-/-\n-gp' )" | egrep "[^ ]+" )
+done
+
+# All directories
+all=$(find . -type "d" -not -name "." -exec basename {} \;)
+
+# Directories to compress
+compr=$( sort <(echo $all) <(echo $dont) <(echo $dont) | uniq -u )
+
+IFS="
+"
+
+echo "" > scatmp.foo
+rm -f scatmp.foo
+for direc in $compr; do
+    IFS="
+    "
+    find . -type "d" -name "$direc" -print >> scatmp.foo # | xargs tar -zcvf $direc".tgz" # -exec tar -zcvf "./"$direc".tgz" {} \;
+done
+
+IFS="
+"
+for f in $(cat scatmp.foo); do
+    path=$(dirname $f)
+    name=$(basename $f)
+    orig=$(pwd)
+    if [ -d "$path" ]; then
+        cd $path
+    else
+        continue
+    fi
+    tar -zcf $name.tgz $name
+    # mv $name.tgz ..
+    # cd ..
+    rm -Rf $name
+    cd $orig
+done
+
+rm -f scatmp.foo
